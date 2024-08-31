@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+<body class="bg-slate-200 p-32">
+    <header>
+        <h1 class="text-2xl font-bold text-center">Matricula do Aluno</h1>
+    </header>
+
+    <main class="my-16">
+        <form method="post" class="flex flex-col gap-8 justify-center items-stretch m-auto">
+            {% csrf_token %}
+            <div class="flex gap-4 items-center justify-center font-bold">
+                <label for="{{form.nome.id_for_label}}">Nome:</label>
+                {{form.nome}} 
+            </div>
+
+            <div class="flex gap-4 items-center justify-center font-bold">
+                <label for="{{form.cpf.id_for_label}}">CPF:</label>
+                {{form.cpf}}
+            </div>
+
+            <div class="flex gap-4 items-center justify-center font-bold">
+                <label for="{{form.email.id_for_label}}">Email:</label>
+                {{form.email}}
+            </div>
+
+            <div class="flex gap-4 items-center justify-center font-bold">
+                <label for="{{form.matricula.id_for_label}}">Matricula:</label>
+                {{form.matricula}}
+            </div>
+
+            <div class="justify-end">
+                <input type="submit" value="Cadastrar" class="p-3 bg-blue-500 text-white rounded-md">
+            </div>
+        </form>
+
+        <div class="flex flex-col my-8">
+            <h2 class="font-bold text-2xl my-8">Alunos</h2>
+            {%for aluno in alunos%}
+            <div class="flex flex-col p-4 bg-stone-600 rounded-2xl text-white">
+                <h3 class="font-bold">{{aluno.nome}}</h3>
+                <p>{{aluno.email}}</p>
+            </div>
+            {%endfor%}
+        </div>
+    </main>
+</body>
+</html>
